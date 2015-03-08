@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -132,7 +134,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 		String email = mEmailView.getText().toString();
 		String password = mPasswordView.getText().toString();
 
-		boolean cancel = false;
+		boolean cancel = false; // Deals with input errors
 		boolean userExists = false;
 		View focusView = null;
 
@@ -163,6 +165,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 		}
 		
 		if (!userExists) {
+			registrationDialog();
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
 			cancel = true;
@@ -189,8 +192,39 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 	private boolean isPasswordValid(String password) {
 		// TODO: Replace this with your own logic
-
 		return password.length() > 3;
+	}
+	
+	public void registrationDialog () {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
+ 
+			// set title
+			alertDialogBuilder.setTitle("Do you want to register an account?");
+ 
+			// set dialog message
+			alertDialogBuilder
+				.setMessage("Click yes to exit!")
+				.setCancelable(false)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, close
+						// current activity
+						LoginActivity.this.finish();
+					}
+				  })
+				.setNegativeButton("No",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, just close
+						// the dialog box and do nothing
+						dialog.cancel();
+					}
+				});
+ 
+				// create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+ 
+				// show it
+				alertDialog.show();
 	}
 
 	/**
