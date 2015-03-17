@@ -195,20 +195,23 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 		return password.length() > 3;
 	}
 	
+	/**
+	 * Shows pop-up dialog to confirm user wishes to register an account
+	 */
 	public void registrationDialog () {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
  
 			// set title
-			alertDialogBuilder.setTitle("Do you want to register an account?");
+			alertDialogBuilder.setTitle("No account is currently registered to this email address");
  
 			// set dialog message
 			alertDialogBuilder
-				.setMessage("Click yes to exit!")
+				.setMessage("Do you want to register a new account?")
 				.setCancelable(false)
 				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-						// if this button is clicked, close
-						// current activity
+						// if this button is clicked,
+						// go to registration activity
 						LoginActivity.this.finish();
 					}
 				  })

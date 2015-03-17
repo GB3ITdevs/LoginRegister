@@ -5,7 +5,10 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password_reenter"> Re-enter Password</string>
+    <string name="prompt_name">Name</string>
     <string name="action_sign_in">Sign in/Register account</string>
+    <string name="action_register">Register account</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
